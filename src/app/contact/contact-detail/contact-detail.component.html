@@ -1,0 +1,44 @@
+<mat-card>
+  <form (ngSubmit)="onSave()" #contactForm="ngForm">
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <div fxLayout="column">
+        <mat-form-field>
+          <input matInput [(ngModel)]="contact.firstName"
+                 name="FirstName" #firstName="ngModel"
+                 type="text"
+                 required
+                 placeholder="First Name">
+          <mat-error *ngIf="firstName.invalid">Please enter name</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="contact.lastName"
+                 name="lastName" #lastName="ngModel"
+                 type="text"
+                 required
+                 placeholder="Last Name">
+          <mat-error *ngIf="lastName.invalid">Please enter name</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="contact.phone"
+                 name="phone" #phone="ngModel"
+                 type="tel"
+                 required maxlength="15"
+                 placeholder="Phone">
+          <mat-error *ngIf="phone.invalid">Please enter valid phone number</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="contact.email"
+                 name="email" #email="ngModel"
+                 type="email"
+                 pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                 required
+                 placeholder="Email">
+          <mat-error *ngIf="email.invalid && email.errors.pattern" class="invalid-feedback">Please enter valid email address</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-card>
+<button mat-fab class="app-fab" [disabled]="!contactForm.form.valid" (click)="onSave()">
+  <mat-icon>check</mat-icon>
+</button>

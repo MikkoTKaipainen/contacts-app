@@ -1,0 +1,24 @@
+.app-sidenav-container {
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.app-sidenav-content {
+  overflow: hidden;
+}
+
+.app-sidenav {
+  width: 250px;
+}
+
+.app-sidenav-header {
+  vertical-align: center;
+  height: 200px;
+  background: url("../assets/images/sidenav-bg.png") left;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
