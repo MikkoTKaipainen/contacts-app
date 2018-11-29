@@ -1,5 +1,5 @@
 <div fxLayout="row wrap" fxLayoutGap="8px" class="mat-card">
-<app-contact-list-item *ngFor="let contact of contacts | paginate: {itemsPerPage: 2, currentPage: p}" [contact]="contact" (contactSelect)="onContactSelect(contact)"></app-contact-list-item>
+<app-contact-list-item *ngFor="let contact of contacts | paginate: {itemsPerPage: 2, currentPage: p}" [contact]="contact" (contactDeleted)="onContactDeleted(contact)"></app-contact-list-item>
 </div>
 <pagination-controls (pageChange)="p = $event"></pagination-controls>
 <button mat-fab class="app-fab" (click)="onContactCreate()">

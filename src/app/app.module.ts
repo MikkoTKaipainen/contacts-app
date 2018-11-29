@@ -9,11 +9,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToolbarComponent} from './ui/toolbar/toolbar/toolbar.component';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatSidenavModule,
+  MatSidenavModule, MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
 import {AvatarModule} from 'ngx-avatar';
@@ -54,9 +54,15 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     MatFormFieldModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule,
+    MatDialogModule,
   ],
-  providers: [ContactService, ToolbarService],
+  providers: [
+    ContactService,
+    ToolbarService
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -20,18 +20,32 @@ export class ContactDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.toolbar.setToolbarOptions(new ToolbarOptions('back', 'Edit Contact'));
     const contactId = this.route.snapshot.paramMap.get('id');
-    if (contactId) {
-      this.contact = this.contactService.getContactById(contactId);
+    if (contactId != null) {
+      this.toolbar.setToolbarOptions(new ToolbarOptions('back', 'Edit Contact'));
+      /*this.contact = this.contactService.getContactById(contactId);*/
+      /*if(this.contactService.getContactById(contactId) !== undefined){
+        this.contact = this.contactService.getContactById(contactId);
+        } else { this.router.navigate(['/contacts']);
+        }*/
+      this.contactService.getContactById(contactId).subscribe(result => {
+        this.contact = result;
+      }, error => {
+        console.error(error);
+      });
+    } else {
+      this.toolbar.setToolbarOptions(new ToolbarOptions('back', 'Create contact'));
     }
   }
 
   onSave(): void {
+    let msgInfo = '';
     console.log('onSave: Contact saved');
-    if (this.contact.id) {
+    if (this.contact.id == null) {
       this.contactService.addContact(this.contact);
+      msgInfo = 'Contact saved';
+    } else {
+      this.router.navigate(['/contacts']);
     }
-    this.router.navigate(['/contacts']);
   }
 }
