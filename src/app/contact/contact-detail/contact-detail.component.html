@@ -35,6 +35,24 @@
                  placeholder="Email">
           <mat-error *ngIf="email.invalid && email.errors.pattern" class="invalid-feedback">Please enter valid email address</mat-error>
         </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="contact.streetAddress"
+                 name="streetAddress" #streetAddress="ngModel"
+                 type="text"
+                 placeholder="Street Address">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="contact.postalCode"
+                 name="postalCode" #postalCode="ngModel"
+                 type="text"
+                 placeholder="Postal code">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="contact.city"
+                 name="city" #city="ngModel"
+                 type="text"
+                 placeholder="City">
+        </mat-form-field>
       </div>
     </div>
   </form>

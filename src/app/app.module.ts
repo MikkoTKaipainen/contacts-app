@@ -23,13 +23,20 @@ import {RouterModule, Routes} from '@angular/router';
 import {ContactDetailComponent} from './contact/contact-detail/contact-detail.component';
 import {FormsModule} from '@angular/forms';
 import {ToolbarService} from './ui/toolbar/toolbar.service';
+import {ContactProvider} from './contact/interfaces/contact-provider';
+import {ContactHttpService} from './contact/services/contact-http.service';
+import {ContactLocalStorageService} from './contact/services/contact-local-storage.service';
+import {environment} from '../environments/environment';
+import { ContactMapComponent } from './contact/contact-map/contact-map.component';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
   {path: 'contacts/new', component: ContactDetailComponent},
   {path: 'contacts/edit/:id', component: ContactDetailComponent},
-  {path: '', redirectTo: '/contacts', pathMatch: 'full'}
+  {path: 'contacts/map', component: ContactMapComponent},
+  {path: '', redirectTo: '/contacts', pathMatch: 'full'},
 ];
 
 @NgModule({
@@ -39,6 +46,8 @@ const appRoutes: Routes = [
     ContactListItemComponent,
     ToolbarComponent,
     ContactDetailComponent,
+    ContactMapComponent,
+    SafeUrlPipe,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +69,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     ContactService,
-    ToolbarService
+    ToolbarService,
+    {provide: ContactProvider, useClass: environment.apiEnabled ? ContactHttpService : ContactLocalStorageService }
   ],
 
   bootstrap: [AppComponent]

@@ -28,7 +28,7 @@ export class ContactDetailComponent implements OnInit {
         this.contact = this.contactService.getContactById(contactId);
         } else { this.router.navigate(['/contacts']);
         }*/
-      this.contactService.getContactById(contactId).subscribe(result => {
+      this.contactService.getById(contactId).subscribe(result => {
         this.contact = result;
       }, error => {
         console.error(error);
@@ -39,13 +39,17 @@ export class ContactDetailComponent implements OnInit {
   }
 
   onSave(): void {
-    let msgInfo = '';
-    console.log('onSave: Contact saved');
-    if (this.contact.id == null) {
-      this.contactService.addContact(this.contact);
-      msgInfo = 'Contact saved';
+const contactsId = this.route.snapshot.paramMap.get('id');
+if (contactsId) {
+  this.contactService.edit(this.contact).subscribe(() => {
+    this.router.navigate(['/contacts']);
+    // TODO snackbar edit
+  });
     } else {
-      this.router.navigate(['/contacts']);
-    }
+  this.contactService.create(this.contact).subscribe(() => {
+    this.router.navigate(['/contacts']);
+    // TODO Snackbar create
+  });
+}
   }
 }

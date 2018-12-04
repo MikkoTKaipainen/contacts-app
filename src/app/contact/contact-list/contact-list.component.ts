@@ -21,9 +21,7 @@ export class ContactListComponent implements OnInit {
   ngOnInit() {
     this.toolbar.setToolbarOptions(new ToolbarOptions('menu', 'Contact Application'));
     // this.contacts = this.contactService.getContacts();
-    this.contactService.getContacts().subscribe(result => {
-      this.contacts = result;
-    });
+    this.loadContacts();
   }
 
   onContactSelect(contact: Contact) {
@@ -42,8 +40,9 @@ export class ContactListComponent implements OnInit {
   }
 
   loadContacts() {
-    this.contactService.getContacts().subscribe(result => {
+    this.contactService.get().subscribe(result => {
       this.contacts = result;
+      console.log('Contacts loaded');
     });
   }
 }

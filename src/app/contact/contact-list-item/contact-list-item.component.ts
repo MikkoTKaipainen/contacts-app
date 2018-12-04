@@ -33,7 +33,7 @@ export class ContactListItemComponent implements OnInit {
   }
 
   removeContact() {
-    this.contactService.deleteContact(this.contact).subscribe(() => {
+    this.contactService.delete(this.contact).subscribe(() => {
       this.snackbar.open('Contact removed',
         this.contact.firstName + ' ' + this.contact.lastName,
         {
@@ -43,6 +43,10 @@ export class ContactListItemComponent implements OnInit {
         });
       this.contactDeleted.emit(this.contact);
     });
+  }
+
+ navigateToMap() {
+    this.router.navigate(['contacts/map', {streetAddress: this.contact.streetAddress, city: this.contact.city}]);
   }
 
 
