@@ -9,12 +9,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToolbarComponent} from './ui/toolbar/toolbar/toolbar.component';
 import {
   MatButtonModule,
-  MatCardModule, MatDialogModule,
+  MatCardModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
   MatSidenavModule, MatSnackBarModule,
-  MatToolbarModule
+  MatToolbarModule,
 } from '@angular/material';
 import {AvatarModule} from 'ngx-avatar';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -27,8 +28,9 @@ import {ContactProvider} from './contact/interfaces/contact-provider';
 import {ContactHttpService} from './contact/services/contact-http.service';
 import {ContactLocalStorageService} from './contact/services/contact-local-storage.service';
 import {environment} from '../environments/environment';
-import { ContactMapComponent } from './contact/contact-map/contact-map.component';
-import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import {ContactMapComponent} from './contact/contact-map/contact-map.component';
+import {SafeUrlPipe} from './pipes/safe-url.pipe';
+import {ConfirmDialogComponent} from './ui/confirm-dialog/confirm-dialog.component';
 
 
 const appRoutes: Routes = [
@@ -36,7 +38,7 @@ const appRoutes: Routes = [
   {path: 'contacts/new', component: ContactDetailComponent},
   {path: 'contacts/edit/:id', component: ContactDetailComponent},
   {path: 'contacts/map', component: ContactMapComponent},
-  {path: '', redirectTo: '/contacts', pathMatch: 'full'},
+  {path: '**', redirectTo: '/contacts', pathMatch: 'full'},
 ];
 
 @NgModule({
@@ -48,6 +50,7 @@ const appRoutes: Routes = [
     ContactDetailComponent,
     ContactMapComponent,
     SafeUrlPipe,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ const appRoutes: Routes = [
   providers: [
     ContactService,
     ToolbarService,
-    {provide: ContactProvider, useClass: environment.apiEnabled ? ContactHttpService : ContactLocalStorageService }
+    ContactLocalStorageService,
+    {provide: ContactProvider, useClass: environment.apiEnabled ? ContactHttpService : ContactLocalStorageService}
   ],
 
   bootstrap: [AppComponent]

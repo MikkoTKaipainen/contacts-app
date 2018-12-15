@@ -13,6 +13,7 @@ import {ToolbarOptions} from '../../ui/toolbar/toolbar-options';
 export class ContactListComponent implements OnInit {
 
   contacts: Contact[];
+  p: any;
 
   constructor(private contactService: ContactService, private router: Router, private toolbar: ToolbarService) {
     this.contacts = [];
@@ -22,11 +23,6 @@ export class ContactListComponent implements OnInit {
     this.toolbar.setToolbarOptions(new ToolbarOptions('menu', 'Contact Application'));
     // this.contacts = this.contactService.getContacts();
     this.loadContacts();
-  }
-
-  onContactSelect(contact: Contact) {
-    // console.log('Contact selected: ' + contact.id);
-    // this.contacts = this.contactService.getContacts();
   }
 
   onContactCreate(): void {

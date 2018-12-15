@@ -3,7 +3,11 @@ import {Contact} from '../contact';
 import {ContactService} from '../services/contact.service';
 import {Router} from '@angular/router';
 import {MatDialog, MatSnackBar} from '@angular/material';
+import {ConfirmDialogComponent} from '../../ui/confirm-dialog/confirm-dialog.component';
 
+export interface DialogData {
+  contact: Contact;
+}
 
 @Component({
   selector: 'app-contact-list-item',
@@ -20,16 +24,28 @@ export class ContactListItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(this.contact);
   }
 
 
-  editItem() {
+  onEditItem() {
     this.router.navigate(['contacts/edit', this.contact.id]);
   }
 
-  deleteItem() {
-    this.removeContact();
+  onDeleteItem() {
+    this.confirmDialog();
+  }
+
+  confirmDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '300px',
+      height: '300px',
+      data: {contact: this.contact}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.removeContact();
+      }
+    });
   }
 
   removeContact() {
@@ -38,14 +54,14 @@ export class ContactListItemComponent implements OnInit {
         this.contact.firstName + ' ' + this.contact.lastName,
         {
           duration: 3000,
-          verticalPosition: 'top',
+          verticalPosition: 'bottom',
           horizontalPosition: 'center'
         });
       this.contactDeleted.emit(this.contact);
     });
   }
 
- navigateToMap() {
+  navigateToMap() {
     this.router.navigate(['contacts/map', {streetAddress: this.contact.streetAddress, city: this.contact.city}]);
   }
 

@@ -6,15 +6,23 @@
   </mat-card-header>
   <mat-card-content>
     <div>
-      {{ contact.phone }}
+      <div>
+        <mat-icon>phone</mat-icon>{{ contact.phone }}
+      </div>
+      <div>
+        <mat-icon>email</mat-icon>{{ contact.email }}
+      </div>
     </div>
     <div>
-      {{ contact.email }}
-    </div>
-    <div>
-      <button mat-icon-button (click)="deleteItem() "><mat-icon>delete</mat-icon></button>
-      <button mat-icon-button (click)="editItem()"><mat-icon>edit</mat-icon></button>
-      <button mat-icon-button (click)="navigateToMap()"><mat-icon>room</mat-icon></button>
+      <button mat-icon-button (click)="onDeleteItem() ">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onEditItem()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="navigateToMap()">
+        <mat-icon>room</mat-icon>
+      </button>
     </div>
   </mat-card-content>
 </mat-card>

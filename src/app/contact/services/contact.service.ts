@@ -9,7 +9,7 @@ import {ContactProvider} from '../interfaces/contact-provider';
 @Injectable({
   providedIn: 'root'
 })
-export class ContactService implements ContactProvider{
+export class ContactService implements ContactProvider {
 
   contacts: Contact[];
 
@@ -24,40 +24,18 @@ export class ContactService implements ContactProvider{
     return this.contactProvider.get();
   }
 
-  /*deleteContact(contact: Contact) {
-    this.contacts.splice(this.contacts.indexOf(contact), 1);
-  }*/
-
   delete(contact: Contact): Observable<any> {
     return this.contactProvider.delete(contact);
   }
 
   create(contact: Contact): Observable<Contact> {
     return this.contactProvider.create(contact);
-    /*console.log('Adding contact id:' + contact.id);
-    let lastId = 1;
-    if (this.contacts.length > 0) {
-      lastId = this.contacts[this.contacts.length - 1].id;
-      lastId = lastId + 1;
-    }
-    contact.id = lastId;
-    this.contacts.push(contact);*/
   }
 
   edit(contact: Contact): Observable<Contact> {
     return this.contactProvider.edit(contact);
   }
 
-  /*getContactById(id: any) {
-    let contactCopy: Contact;
-    for (let i = 0; i < this.contacts.length; i++) {
-      if (id == this.contacts[i].id) {
-        console.log(this.contacts[i]);
-        contactCopy = Object.assign({}, this.contacts[i]);
-        return contactCopy;
-      }
-    }
-  }*/
   getById(id: string): Observable<Contact> {
     return this.contactProvider.getById(id);
   }
