@@ -4,16 +4,19 @@
       {{ contact.firstName }} {{ contact.lastName}}
     </mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <div>
-      <div>
-        <mat-icon>phone</mat-icon>{{ contact.phone }}
-      </div>
-      <div>
-        <mat-icon>email</mat-icon>{{ contact.email }}
-      </div>
-    </div>
-    <div>
+  <mat-card-content fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-list dense role="list">
+      <mat-list-item>
+        <mat-icon role="listitem">phone</mat-icon>{{ contact.phone }}
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon role="listitem">email</mat-icon>{{ contact.email }}
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon role="listitem">home</mat-icon>{{ contact.streetAddress + ', ' + contact.postalCode + ' ' + contact.city }}
+      </mat-list-item>
+    </mat-list>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="start stretch">
       <button mat-icon-button (click)="onDeleteItem() ">
         <mat-icon>delete</mat-icon>
       </button>
@@ -23,6 +26,6 @@
       <button mat-icon-button (click)="navigateToMap()">
         <mat-icon>room</mat-icon>
       </button>
-    </div>
+    </mat-card-actions>
   </mat-card-content>
 </mat-card>

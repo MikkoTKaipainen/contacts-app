@@ -1,9 +1,19 @@
 .contact-card {
-  width: 250px;
-  height: 125px;
+  width: 300px;
+  height: 150px;
+  overflow: hidden;
+  overflow-style: auto;
+  margin-top: 10px;
 }
 
-.phonemail {
-
+mat-card-content {
+  display: flex;
+  flex: 1;
 }
+
+mat-list-item {
+  margin: -12px;
+}
+
+
 

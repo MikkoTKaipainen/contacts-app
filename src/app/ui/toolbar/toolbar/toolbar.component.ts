@@ -45,4 +45,8 @@ export class ToolbarComponent implements OnInit {
     this.location.back();
   }
 
+  onClickSearch() {
+
+  }
+
 }

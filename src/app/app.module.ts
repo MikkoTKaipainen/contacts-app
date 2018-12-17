@@ -13,7 +13,7 @@ import {
   MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatListModule,
   MatSidenavModule, MatSnackBarModule,
   MatToolbarModule,
 } from '@angular/material';
@@ -69,6 +69,7 @@ const appRoutes: Routes = [
     MatInputModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatListModule
   ],
 
   entryComponents: [

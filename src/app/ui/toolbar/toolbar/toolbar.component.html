@@ -3,5 +3,7 @@
     <mat-icon>{{mainAction.icon}}</mat-icon>
   </button>
   {{options.title}}
-</mat-toolbar>
+  <mat-input class="search" type="text" placeholder="Who do you need?"></mat-input>
+  <button class="searchbutton" (click)="onClickSearch">Search</button>
+  </mat-toolbar>
 

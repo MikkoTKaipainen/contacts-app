@@ -26,7 +26,7 @@ export class ContactLocalStorageService implements ContactProvider {
     let contactId: Contact;
     for (const contact of this.contacts) {
       if (contact.id === Number(id)) {
-        contactId = contact;
+        contactId = Object.assign({}, contact);
       }
     }
     return of(contactId);
@@ -68,15 +68,11 @@ export class ContactLocalStorageService implements ContactProvider {
   }
 
   edit(contact: Contact): Observable<Contact> {
-    let lastId = 1;
-    if (this.contacts.length > 0) {
-      lastId = this.contacts[this.contacts.length - 1].id;
-      lastId = lastId + 1;
-    }
-    contact.id = lastId;
-    this.contacts.push(contact);
-
-    localStorage.removeItem(this.localStorageKey);
+    this.contacts.forEach((contactId, index) => {
+      if (contactId.id === contact.id) {
+        this.contacts[index] = contact;
+      }
+    });
     localStorage.setItem(this.localStorageKey, JSON.stringify(this.contacts));
     return of(contact);
   }
