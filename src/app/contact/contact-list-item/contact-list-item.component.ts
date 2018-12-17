@@ -39,7 +39,7 @@ export class ContactListItemComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
       height: '300px',
-      data: {contact: this.contact}
+      data: {contact: this.contact.firstName + ' ' + this.contact.lastName}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {

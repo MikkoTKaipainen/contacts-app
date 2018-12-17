@@ -70,6 +70,10 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatDialogModule,
   ],
+
+  entryComponents: [
+    ConfirmDialogComponent
+  ],
   providers: [
     ContactService,
     ToolbarService,
