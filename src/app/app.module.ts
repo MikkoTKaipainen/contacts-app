@@ -38,6 +38,7 @@ const appRoutes: Routes = [
   {path: 'contacts/new', component: ContactDetailComponent},
   {path: 'contacts/edit/:id', component: ContactDetailComponent},
   {path: 'contacts/map', component: ContactMapComponent},
+  {path: 'contacts/search/:search', component: ContactListComponent},
   {path: '**', redirectTo: '/contacts', pathMatch: 'full'},
 ];
 

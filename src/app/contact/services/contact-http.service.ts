@@ -44,4 +44,10 @@ export class ContactHttpService implements ContactProvider {
   delete(contact: Contact): Observable<any> {
     return this.httpClient.delete(this.url + '/' + contact.id);
   }
+
+  search(search: string): Observable<Contact[]> {
+    return this.httpClient.get(this.url + '?q=' + search).pipe(map(response => {
+      return response as Contact[];
+    }));
+  }
 }

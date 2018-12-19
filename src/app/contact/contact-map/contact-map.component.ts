@@ -21,8 +21,6 @@ export class ContactMapComponent implements OnInit {
     this.toolBar.setToolbarOptions(new ToolbarOptions('back', 'Map'));
     this.streetAddress = this.route.snapshot.paramMap.get('streetAddress');
     this.city = this.route.snapshot.paramMap.get('city');
-    console.log(this.streetAddress);
-    console.log(this.city);
     this.createMapUrl();
   }
 

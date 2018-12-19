@@ -39,4 +39,8 @@ export class ContactService implements ContactProvider {
   getById(id: string): Observable<Contact> {
     return this.contactProvider.getById(id);
   }
+
+  search(search: string): Observable<Contact[]> {
+    return this.contactProvider.search(search);
+  }
 }

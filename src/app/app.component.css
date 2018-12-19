@@ -5,8 +5,9 @@
   height: 100%;
 }
 
-.app-sidenav-content {
+#app-sidenav-content {
   overflow: hidden;
+  padding: 12px;
 }
 
 .app-sidenav {
@@ -16,9 +17,14 @@
 .app-sidenav-header {
   vertical-align: center;
   height: 200px;
-  background: url("../assets/images/sidenav-bg.png") left;
+  background: url("../assets/images/sidenav-bg.jpg") left;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+a:any-link{
+  width: 100%;
+  margin-top: 10px;
 }

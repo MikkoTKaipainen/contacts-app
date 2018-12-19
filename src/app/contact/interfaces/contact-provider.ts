@@ -8,4 +8,5 @@ export abstract class ContactProvider implements IContactProvider {
   abstract edit(contact: Contact): Observable<Contact>;
   abstract create(contact: Contact): Observable<Contact>;
   abstract delete(contact: Contact): Observable<any>;
+  abstract search(search: string): Observable<Contact[]>;
 }

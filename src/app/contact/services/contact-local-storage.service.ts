@@ -15,7 +15,6 @@ export class ContactLocalStorageService implements ContactProvider {
   constructor() {
     if (localStorage.getItem(this.localStorageKey)) {
       this.contacts = JSON.parse(localStorage.getItem(this.localStorageKey));
-      console.log(Contact);
     } else {
       console.log('Local storage not working');
       this.contacts = [];
@@ -56,7 +55,6 @@ export class ContactLocalStorageService implements ContactProvider {
   }
 
   delete(contact: Contact): Observable<any> {
-    console.log('Deleting contact' + contact.id);
     for (const entry of this.contacts) {
       if (entry.id === contact.id) {
         this.contacts.splice(this.contacts.indexOf(entry), 1);
@@ -75,5 +73,16 @@ export class ContactLocalStorageService implements ContactProvider {
     });
     localStorage.setItem(this.localStorageKey, JSON.stringify(this.contacts));
     return of(contact);
+  }
+
+  search(search: string): Observable<Contact[]> {
+    const searchResult = [];
+
+    for (const contact of this.contacts) {
+      if (JSON.stringify(contact).search(new RegExp(search, 'i')) !== -1) {
+        searchResult.push(contact);
+      }
+    }
+    return of(searchResult);
   }
 }

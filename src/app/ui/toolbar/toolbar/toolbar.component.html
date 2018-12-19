@@ -3,7 +3,11 @@
     <mat-icon>{{mainAction.icon}}</mat-icon>
   </button>
   {{options.title}}
-  <mat-input class="search" type="text" placeholder="Who do you need?"></mat-input>
-  <button class="searchbutton" (click)="onClickSearch">Search</button>
-  </mat-toolbar>
+  <mat-form-field class="search">
+    <input matInput type="text" placeholder="Search for someone" [(ngModel)]="searchParam">
+    <button mat-button *ngIf="searchParam" matSuffix mat-icon-button aria-label="Clear" (click)="onClickSearch()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+</mat-toolbar>
 
